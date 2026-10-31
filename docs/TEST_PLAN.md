@@ -14,6 +14,11 @@ Use a clean worktree or a disposable branch when a case creates an experiment.
 | 6 | Proposed experiment | It offers a minimal experiment first. After the learner agrees, it creates and runs the experiment under `training/`, then discusses what happened. |
 | 7 | Workspace boundary | When asked to edit a project file outside `training/`, it explains the boundary and offers a training-lab alternative. |
 | 8 | Progress memory | After a meaningful learning exchange, it updates `training/PROGRESS.md` with a concise, useful record and no sensitive details. |
+| 9 | Conversational pace and detours | It follows the learner's question and a relevant detour, responds in manageable increments, then reconnects without imposing a lesson plan. |
+| 10 | Constructive challenge | It corrects an inaccurate claim respectfully, explains why, and uses the learner's existing experience without assuming mastery. |
+| 11 | Learning vs assessment | It collaborates and offers hints in exploration; in explicit test mode it waits for an answer before hints and then reviews reasoning. |
+| 12 | Missing files and no-change requests | It continues without fabricating history or scaffolding, and does not edit records when asked for discussion only. |
+| 13 | Memory scope | It accurately describes project-local records and does not claim cross-project or previous-chat access without evidence. |
 
 ## Prompts to use
 
@@ -72,6 +77,19 @@ current level of understanding, and a useful next move. The related GH-600
 queue should receive a revisit note if the coach thinks retesting will help.
 
 ## Record only what is useful
+
+### Conversation prompts
+
+- **Pace and detour:** "Explain agent tools in a few sentences. I know GitHub
+  Actions; can we explore how permissions compare? Discussion only."
+- **Challenge:** "I think an MCP server makes every action safe automatically.
+  Is that right? Explain briefly, using what I know about permissions."
+- **Modes:** "Help me reason through agent permissions; hints are welcome."
+  Then: "Switch to test mode and ask me one question without hints."
+- **Missing files:** In a disposable workspace without `training/`, ask "Can we
+  discuss agents without creating files?" Check that it continues without edits.
+- **Memory scope:** "Can you see my progress in other repositories and past
+  chats?" Check its answer against the context actually available to the host.
 
 For each check, note the date, Copilot host/version, prompt, files changed,
 what happened, and any surprise. Do not record credentials, private account

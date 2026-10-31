@@ -26,9 +26,12 @@ the VS Code agent picker.
 
 ## Install
 
-The coach always works in the current project's `training/` directory, so every
-project you study in needs its own copy of `training-template/`, whichever way
-you install the agent.
+The coach can hold a conversation without creating files. For persistent notes
+and experiments in a project, set up its `training/` directory. Each project's
+records are separate: copying the template does not synchronize learning
+history. You can keep one project as your learning home and use other projects
+for context, or maintain separate labs; shared memory across projects requires
+an explicit arrangement and is not provided by this draft.
 
 Run these commands on the machine where the Copilot harness runs. For a VS Code
 Remote-SSH setup, that is the remote machine, not the laptop running the UI.
@@ -47,9 +50,9 @@ cp "$COACH/agents/certification-learning-coach.agent.md" .github/agents/
 cp -r "$COACH/training-template" training   # skip if training/ already exists
 ```
 
-Optionally, add the text in [`docs/AGENTS_SNIPPET.md`](docs/AGENTS_SNIPPET.md)
-to the project's `AGENTS.md` so other project rules don't conflict with the
-coach's training-only work.
+Optionally, review [`docs/AGENTS_SNIPPET.md`](docs/AGENTS_SNIPPET.md) if
+project instructions interfere with learning. It changes project-wide
+instructions, so adapt it to the project and add it only when needed.
 
 ### Option 2 — your user account
 
@@ -58,7 +61,8 @@ mkdir -p ~/.copilot/agents
 cp "$COACH/agents/certification-learning-coach.agent.md" ~/.copilot/agents/
 ```
 
-Then copy `training-template/` to `training/` in each project you study in.
+For projects where you want persistent local notes or experiments, copy
+`training-template/` to `training/` as described above.
 
 If a `training/` directory already exists, merge the template by hand instead of
 overwriting your notes, `PROGRESS.md`, or `TEST_ME_LATER.md` queues.
