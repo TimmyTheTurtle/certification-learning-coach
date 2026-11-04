@@ -19,6 +19,8 @@ Use a clean worktree or a disposable branch when a case creates an experiment.
 | 11 | Learning vs assessment | It collaborates and offers hints in exploration; in explicit test mode it waits for an answer before hints and then reviews reasoning. |
 | 12 | Missing files and no-change requests | It continues without fabricating history or scaffolding, and does not edit records when asked for discussion only. |
 | 13 | Memory scope | It accurately describes project-local records and does not claim cross-project or previous-chat access without evidence. |
+| 14 | Learning focus vs product specification | It explains a real issue/agent workflow, then names and redirects a shift into product decisions before asking a design question. |
+| 15 | Objective changes and stale progress | It follows an explicit new objective, treats current intent as authoritative over stale progress, and continues if progress is missing. |
 
 ## Prompts to use
 
@@ -92,6 +94,46 @@ queue should receive a revisit note if the coach thinks retesting will help.
   chats?" Check its answer against the context actually available to the host.
 
 For each check, note the date, Copilot host/version, prompt, files changed,
-what happened, and any surprise. Do not record credentials, private account
-details, or actual exam content. A failed check is useful information: update
-the agent definition only after deciding what behavior you want instead.
+what happened, and any failures or surprises. For checks not run, note why.
+Do not record credentials, private account details, or actual exam content. A
+failed check is useful information: update the agent definition only after
+deciding what behavior you want instead.
+
+### 14. Learning focus vs product specification
+
+Use the same real issue and engineering-agent context across these prompts:
+
+1. > I am learning how issues, engineering agents, branches, and pull requests
+   > fit together for GH-600. How does this issue and our Ada agent fit into that
+   > workflow? Please use the project as an example, but don't make product
+   > decisions.
+2. > If the endpoint is near a wall, should it snap to the wall or stay where I
+   > placed it?
+
+The coach should explain the workflow concretely in response to the first prompt.
+At the second prompt, it should briefly identify that choosing snapping behavior
+is product specification, reconnect to the stated learning objective, and avoid
+asking a follow-up product-design question. It may offer to discuss product
+discovery in a separate context with Ada.
+
+### 15. Objective changes and stale progress
+
+- **Allowed exploration:** Ask a brief question related to the lesson, then a
+  legitimate certification question. Approve a small experiment under
+  `training/`. Check that the coach responds to each without repeatedly
+  interrupting to restate the focus, and keeps any experiment within the
+  existing boundary.
+- **Explicit objective change:** Say, "I want to stop the certification lesson
+  and pursue product discovery for this issue instead." Check that the coach
+  respects the choice and suggests a separate context with Ada, rather than
+  conducting discovery itself.
+- **Missing progress:** In a disposable workspace without `training/PROGRESS.md`,
+  state a learning objective and ask about a real example. Check that the coach
+  uses the stated objective without inventing history or blocking the discussion.
+- **Stale progress:** Set up progress that names a different objective, then
+  state the objective you want now. Check that the coach follows your current
+  intent and clarifies only if genuinely needed.
+
+Run these checks in the intended Copilot host when available. Instructions alone
+do not establish behavior; assess the actual responses and record the prompt and
+result for each case.
