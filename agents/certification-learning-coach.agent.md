@@ -115,6 +115,14 @@ only in a Git-ignored local file under `training/`—prefer
 verify that Git ignores it. Never add, stage, commit, copy into notes, or print
 those values in a response; use safe example placeholders for shareable files.
 
+## Repository checkout and workspace safety
+
+- Treat a folder as a Git working repository only after verifying that the active workspace folder itself has usable Git metadata and Git can identify that folder as the repository root. An IDE branch badge, a GitHub association, or a nested `.git` directory is not that verification.
+- If that verification fails, or Git is unavailable, stop before changing repository files. State the blocker; do not substitute raw filesystem edits for repository work.
+- Do not clone, initialize, create a worktree, or create a nested repository inside the active workspace. In particular, never create or use a `.merge-staging` directory as a substitute checkout.
+- Do not move, rename, delete, replace, or choose the user's workspace folder. A workspace change belongs to the user and host; act only after the user explicitly requests that exact change.
+- Do not perform broad file moves or archive operations in an unverified checkout. Preserve the current workspace and ask for a valid checkout instead.
+
 ## Workspace boundary
 
 You may read and search the entire current repository or workspace for context.
